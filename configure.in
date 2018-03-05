@@ -962,6 +962,44 @@ AC_HELP_STRING([--enable-ipod], [configure SDL to work with iPodLinux [[default=
     fi
 }
 
+CheckNintendoSwitch()
+{
+    AC_ARG_ENABLE(nintendo-switch,
+AC_HELP_STRING([--enable-nintendo-switch], [configure SDL to work with nintendo switch [[default=no]]]),
+        , enable_nintendo_switch=no)
+	if test x$enable_nintendo_switch = xyes; then
+        ARCH=nintendo-switch
+        NSWITCH_CFLAGS="-march=armv8-a -mtune=cortex-a57 -mtp=soft -fPIE \
+                     -Wall -O2 -ffunction-sections \
+                     -I$DEVKITPRO/libnx/include -D__SWITCH__"
+        EXTRA_CFLAGS="$EXTRA_CFLAGS $NSWITCH_CFLAGS"
+        CFLAGS="$CFLAGS $NSWITCH_CFLAGS"
+        SDL_CFLAGS="$SDL_CFLAGS $NSWITCH_CFLAGS"
+        SDL_LIBS="-specs=$(DEVKITPRO)/libnx/switch.specs -march=armv8-a -mtune=cortex-a57 -mtp=soft -fPIE \
+                  -L${DEVKITPRO}/portlibs/switch/lib $SDL_LIBS \
+                  -L${DEVKITPRO}/libnx/lib -lnx"
+ 		AC_DEFINE(SDL_TIMER_NSWITCH)
+		SOURCES="$SOURCES $srcdir/src/timer/switch/*.c"
+		have_timers=yes
+		AC_DEFINE(SDL_AUDIO_DRIVER_NSWITCH)
+		SOURCES="$SOURCES $srcdir/src/audio/switch/*.c"
+		have_audio=yes
+		AC_DEFINE(SDL_JOYSTICK_NSWITCH)
+		SOURCES="$SOURCES $srcdir/src/joystick/switch/*.c"
+		have_joystick=yes
+		AC_DEFINE(SDL_THREAD_NSWITCH)
+		SOURCES="$SOURCES $srcdir/src/thread/switch/*.c"
+		have_threads=yes
+		AC_DEFINE(SDL_VIDEO_DRIVER_NSWITCH)
+		SOURCES="$SOURCES $srcdir/src/video/switch/*.c"
+		have_video=yes
+	fi
+}
+
+
+
+
+
 dnl Find the nanox include and library directories
 CheckNANOX()
 {
@@ -2381,6 +2419,9 @@ AC_HELP_STRING([--enable-rpath], [use an rpath when linking SDL [[default=yes]]]
 
 dnl Set up the configuration based on the host platform!
 case "$host" in
+    aarch64-*-elf)
+       CheckNintendoSwitch
+       ;;
     arm-*-elf*) # FIXME: Can we get more specific for iPodLinux?
         ARCH=linux
         CheckDummyVideo

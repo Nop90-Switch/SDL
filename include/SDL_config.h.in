@@ -186,6 +186,7 @@
 #undef SDL_AUDIO_DRIVER_SNDMGR
 #undef SDL_AUDIO_DRIVER_SUNAUDIO
 #undef SDL_AUDIO_DRIVER_WAVEOUT
+#undef SDL_AUDIO_DRIVER_NSWITCH
 
 /* Enable various cdrom drivers */
 #undef SDL_CDROM_AIX
@@ -219,6 +220,7 @@
 #undef SDL_JOYSTICK_WINMM
 #undef SDL_JOYSTICK_USBHID
 #undef SDL_JOYSTICK_USBHID_MACHINE_JOYSTICK_H
+#undef SDL_JOYSTICK_NSWITCH
 
 /* Enable various shared object loading systems */
 #undef SDL_LOADSO_BEOS
@@ -240,6 +242,7 @@
 #undef SDL_THREAD_PTHREAD_RECURSIVE_MUTEX_NP
 #undef SDL_THREAD_SPROC
 #undef SDL_THREAD_WIN32
+#undef SDL_THREAD_NSWITCH
 
 /* Enable various timer systems */
 #undef SDL_TIMER_BEOS
@@ -252,6 +255,7 @@
 #undef SDL_TIMER_UNIX
 #undef SDL_TIMER_WIN32
 #undef SDL_TIMER_WINCE
+#undef SDL_TIMER_NSWITCH
 
 /* Enable various video drivers */
 #undef SDL_VIDEO_DRIVER_AALIB
@@ -295,6 +299,7 @@
 #undef SDL_VIDEO_DRIVER_X11_XRANDR
 #undef SDL_VIDEO_DRIVER_X11_XV
 #undef SDL_VIDEO_DRIVER_XBIOS
+#undef SDL_VIDEO_DRIVER_NSWITCH
 
 /* Enable OpenGL support */
 #undef SDL_VIDEO_OPENGL
