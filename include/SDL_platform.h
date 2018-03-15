@@ -106,5 +106,9 @@
 #undef __WIN32__
 #define __WIN32__	1
 #endif
+#if defined(SWITCH)
+#undef __SWITCH__
+#define __SWITCH__	1
+#endif
 
 #endif /* _SDL_platform_h */

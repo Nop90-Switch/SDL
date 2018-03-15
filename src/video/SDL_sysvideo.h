@@ -398,6 +398,9 @@ extern VideoBootStrap DC_bootstrap;
 #if SDL_VIDEO_DRIVER_NDS
 extern VideoBootStrap NDS_bootstrap;
 #endif
+#if SDL_VIDEO_DRIVER_NSWITCH
+extern VideoBootStrap SWITCH_bootstrap;
+#endif
 #if SDL_VIDEO_DRIVER_RISCOS
 extern VideoBootStrap RISCOS_bootstrap;
 #endif
